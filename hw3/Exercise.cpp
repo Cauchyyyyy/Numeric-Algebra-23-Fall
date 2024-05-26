@@ -38,7 +38,7 @@ void exercise1_1() {
 		if (max < abs(b[i] - 1))
 			max = abs(1 - b[i]);
 	}
-	cout << "与精确解的最大误差为(一般采用x-x^的无穷范数表示)" << max << endl;
+	cout << "error between computed solution and the precise one(x-x^ infinite norm)" << max << endl;
 	cout << endl;
 
 	for (int i = 0; i < N; i++)
@@ -59,31 +59,30 @@ void exercise1_1() {
 	b[N - 1] = 14;
 	
 	start = clock();
-	gauss_elim_col_pivoting(A, u);//与列主元gauss消去法的对比
+	gauss_elim_col_pivoting(A, u);
 	vector_pb(u, b);
 	forward_subs1(A, b);
 	back_subs(A, b);
 	end = clock();
 	
-	cout << "列主元Gauss消去法运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
+	cout << "time of gauss elim col pivoting " << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
 
 	max = abs(b[0] - 1);
 	for (int i = 1; i < N; i++) {
 		if (max < abs(b[i] - 1))
 			max = abs(1 - b[i]);
 	}
-	cout << "与精确解的最大误差为" << max << endl<<endl;
+	cout << "error between computed solution and the precise one" << max << endl<<endl;
 }
 
 void exercise1_2() {
-	int N = 100; //矩阵大小
+	int N = 100; 
 	vector<vector<double>> A(N, vector<double>(N));
 	vector<double> b(N), d(N), t(N);
 	vector<int>u(N);
 	double max;
 	clock_t start, end;
 
-	//初始化A和b
 	
 	for (int i = 0; i < N; i++)
 	{
@@ -97,14 +96,14 @@ void exercise1_2() {
 		}
 	}
 
-	srand((unsigned)time(NULL));  //b的随机赋值(来自网络)
+	srand((unsigned)time(NULL));  
 	for (int i = 0; i < N; i++) {
 		b[i] = t[i] = rand();
 	}
-	cout << "随机向量b的取值此时为" << endl;
+	cout << "the original b is" << endl;
 	solution_print(b);
 
-	cout << "相应的解如下" << endl << endl;
+	cout << "the solution is" << endl << endl;
 
 	start = clock();
 	qr_decomposition(A, b, d);
@@ -132,7 +131,7 @@ void exercise1_2() {
 		if (max < abs(b[i] - t[i]))
 			max = abs(t[i] - b[i]);
 	}
-	cout << "与精确解的最大误差为(这里采用的是Ax-Ab的无穷范数表示)" << max << endl;
+	cout << "error between computed solution and the precise one(Ax-Ax^ infinite norm)" << max << endl;
 	cout << endl;
 	for (int i = 0; i < N; i++) {
 		b[i] = t[i] ;
@@ -163,7 +162,7 @@ void exercise1_2() {
 		if (max < abs(b[i] - t[i]))
 			max = abs(t[i] - b[i]);
 	}
-	cout << "与精确解的最大误差为(这里采用的是Ax-Ab的无穷范数表示)" << max << endl;
+	cout << "error between computed solution and the precise one(这里采用的是Ax-Ab的无穷范数表示)" << max << endl;
 	cout << endl;
 
 	for (int i = 0; i < N; i++) {
@@ -195,7 +194,7 @@ void exercise1_2() {
 		if (max < abs(b[i] - t[i]))
 			max = abs(t[i] - b[i]);
 	}
-	cout << "与精确解的最大误差为(这里采用的是Ax-Ab的无穷范数表示)" << max << endl;
+	cout << "error between computed solution and the precise one(这里采用的是Ax-Ab的无穷范数表示)" << max << endl;
 	cout << endl;
 }
 
@@ -233,7 +232,7 @@ void exercise1_3(){
 		if (max < abs(b[i] - 1))
 			max = abs(1 - b[i]);
 	}
-	cout << "与精确解的最大误差为" << max << endl;
+	cout << "error between computed solution and the precise one" << max << endl;
 	cout << endl;
 
 	for (int i = 0; i < N; i++)
@@ -263,7 +262,7 @@ void exercise1_3(){
 		if (max < abs(b[i] - 1))
 			max = abs(1 - b[i]);
 	}
-	cout << "与精确解的最大误差为" << max << endl << endl;
+	cout << "error between computed solution and the precise one" << max << endl << endl;
 
 	for (int i = 0; i < N; i++)
 	{
@@ -291,7 +290,7 @@ void exercise1_3(){
 		if (max < abs(b[i] - 1))
 			max = abs(1 - b[i]);
 	}
-	cout << "与精确解的最大误差为" << max << endl << endl;
+	cout << "error between computed solution and the precise one" << max << endl << endl;
 }
 
 void exercise_2() {
