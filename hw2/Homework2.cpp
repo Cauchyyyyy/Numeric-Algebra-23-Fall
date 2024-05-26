@@ -12,7 +12,7 @@ using namespace std;
 int main() {
 	for (int i = 2; i<21; i++)
 	{
-		cout << i << "阶Hilbert矩阵的无穷范数条件数是";
+		cout << i << "-order Hilbert matrix's infinite norm condition number is:";
 		exercise_1(i);
 	}
 	cout << endl;

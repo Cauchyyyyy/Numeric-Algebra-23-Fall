@@ -1,17 +1,18 @@
 #include "Exercise.h"
 #include"Function.h"
 #include<time.h>
+#include<cmath>
 #include<iostream>
 
 void exercise1_1() {
-	int N = 84; //矩阵大小
+	int N = 84; //order of the matrix
 	vector<vector<double>> A(N, vector<double>(N));
 	vector<double> b(N), d(N);
 	vector<int>u(N), v(N);
 	double max;
-	clock_t start, end;      //定义clock_t变量，用于计算算法所需时间
+	clock_t start, end;      
 
-	//初始化A和b,QR分解法求解
+	//get the solution by QR decomposition
 
 	for (int i = 0; i < N - 1; i++)
 	{
@@ -23,11 +24,10 @@ void exercise1_1() {
 	A[N - 1][N - 1] = 6;
 	b[0] = 7;
 	b[N - 1] = 14;
-	start = clock();           //运算开始时间（只计算算法用时，输出解等步骤不计入）
-	qr_decomposition2(A, b, d);
-	
+	start = clock();           
+	qr_decomposition2(A, b, d);	
 	back_subs(A, b);
-	end = clock();        //运算结束
+	end = clock();        
 	solution_print(b);
 	cout << "求解矩阵1运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
 	//输出时间（单位：ｓ），这条语句来自网络，用于计算算法运行用时
