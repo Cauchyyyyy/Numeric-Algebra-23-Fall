@@ -6,7 +6,7 @@
 
 int exercise1(double epsilon, double  omega) {
 	double a = 0.5, n = 100.0, h = 1 / n;
-	int k = 0;//迭代次数
+	int k = 0;//iteration times
 	clock_t start = 0, end = 0;
 	vector<double> z(n-1), y(n-1), x(n-1), b(n-1);
 	vector<vector<double>> A(n - 1, vector<double>(n - 1));
@@ -37,17 +37,17 @@ int exercise1(double epsilon, double  omega) {
 	b[n - 2] = a * h * h - epsilon - h;
 	cout << "n="<<n<<",epsilon="<<epsilon<<",omega="<<omega<<"时" << endl<<endl;
 	//solution_print(z);
-	//Jacobi迭代法
+	//Jacobi
 	start = clock();
 	k = jacobi(A, b);
 	end = clock();
 	for (int i = 0; i < n - 1; i++) {
 		b[i] = b[i]-z[i];
 	}
-	cout << "Jacobi迭代运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s" ;
-	cout << "，迭代次数为" << k << ",与精确解的误差为"<<vector_infinity_norm(b)<<endl;
+	cout << "the time of Jacobi " << double(end - start) / CLOCKS_PER_SEC << "s" ;
+	cout << ", iteration times " << k << ",error "<<vector_infinity_norm(b)<<endl;
 
-	//G-S迭代法
+	//G-S
 	
 	for (int i = 0; i < n - 1; i++) {
 		b[i] = a * h * h;
@@ -59,10 +59,10 @@ int exercise1(double epsilon, double  omega) {
 	for (int i = 0; i < n - 1; i++) {
 		b[i] = b[i] - z[i];
 	}
-	cout << "G-S迭代运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s";
-	cout << "，迭代次数为" << k << ",与精确解的误差为" << vector_infinity_norm(b) << endl;
+	cout << "G-S iteration running time " << double(end - start) / CLOCKS_PER_SEC << "s";
+	cout << "iteration times " << k << ",error " << vector_infinity_norm(b) << endl;
 
-	//SOR迭代法
+	//SOR
 	
 	for (int i = 0; i < n - 1; i++) {
 		b[i] = a * h * h;
@@ -74,8 +74,8 @@ int exercise1(double epsilon, double  omega) {
 	for (int i = 0; i < n - 1; i++) {
 		b[i] = b[i] - z[i];
 	}
-	cout << "SOR迭代运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s";
-	cout << "，迭代次数为" << k << ",与精确解的误差为" << vector_infinity_norm(b) << endl<<endl;
+	cout << "SOR iteration running time " << double(end - start) / CLOCKS_PER_SEC << "s";
+	cout << " iteration times " << k << ",error " << vector_infinity_norm(b) << endl<<endl;
 	return k;
 }
 
@@ -129,8 +129,8 @@ int exercise2(int N, double omega) {
 		k++;
 	}
 	end = clock();
-	cout << "Jacobi迭代运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s";
-	cout << "，迭代次数为" << k << endl <<
+	cout << "the time of Jacobi " << double(end - start) / CLOCKS_PER_SEC << "s";
+	cout << "，iteration times为" << k << endl <<
 		"解的最小分量" << matrix_min(U) << endl ;
 
 	//G-S迭代
@@ -175,8 +175,8 @@ int exercise2(int N, double omega) {
 		k++;
 	}
 	end = clock();
-	cout << "G-S迭代运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s";
-	cout << "，迭代次数为" << k << endl <<
+	cout << "G-S iteration running time " << double(end - start) / CLOCKS_PER_SEC << "s";
+	cout << "，iteration times为" << k << endl <<
 		"解的最小分量" << matrix_min(U) << endl ;
 
 	//SOR迭代
@@ -225,8 +225,8 @@ int exercise2(int N, double omega) {
 		k++;
 	}
 	end = clock();
-	cout << "SOR迭代运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s";
-	cout << "，迭代次数为" << k << endl <<
+	cout << "SOR iteration running time " << double(end - start) / CLOCKS_PER_SEC << "s";
+	cout << "，iteration times为" << k << endl <<
 		"解的最小分量" << matrix_min(U) << endl << endl;
 	return k;
 }

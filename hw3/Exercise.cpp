@@ -162,7 +162,7 @@ void exercise1_2() {
 		if (max < abs(b[i] - t[i]))
 			max = abs(t[i] - b[i]);
 	}
-	cout << "error between computed solution and the precise one(这里采用的是Ax-Ab的无穷范数表示)" << max << endl;
+	cout << "error between computed solution and the precise one(Ax-Ax^ infinite norm)" << max << endl;
 	cout << endl;
 
 	for (int i = 0; i < N; i++) {
@@ -175,7 +175,7 @@ void exercise1_2() {
 	back_subs(A, b);
 	end = clock();
 	
-	cout << "列主元Gauss消去法运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
+	cout << "time of gauss elim " << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
 
 	for (int i = 0; i < N; i++)
 	{
@@ -194,18 +194,18 @@ void exercise1_2() {
 		if (max < abs(b[i] - t[i]))
 			max = abs(t[i] - b[i]);
 	}
-	cout << "error between computed solution and the precise one(这里采用的是Ax-Ab的无穷范数表示)" << max << endl;
+	cout << "error between computed solution and the precise one(Ax-Ax^ infinite norm)" << max << endl;
 	cout << endl;
 }
 
 void exercise1_3(){
-	int N = 10; //矩阵大小
+	int N = 10; 
 	vector<vector<double>> A(N, vector<double>(N));
 	vector<double> b(N), d(N);
 	vector<int>u(N);
 	double max;
 	clock_t start, end;
-	//初始化A和b
+	
 	
 	for (int i = 0; i < N; i++)
 	{
@@ -225,7 +225,7 @@ void exercise1_3(){
 	back_subs(A, b);
 	end = clock();
 	solution_print(b);
-	cout << "求解Hilbert矩阵运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s" << endl ;
+	cout << "running time " << double(end - start) / CLOCKS_PER_SEC << "s" << endl ;
 
 	max = abs(b[0] - 1);
 	for (int i = 1; i < N; i++) {
@@ -249,13 +249,13 @@ void exercise1_3(){
 		}
 	}
 	start = clock();
-	gauss_elim_col_pivoting(A, u);//与列主元gauss消去法的对比
+	gauss_elim_col_pivoting(A, u);
 	vector_pb(u, b);
 	forward_subs1(A, b);
 	back_subs(A, b);
 	end = clock();
 
-	cout << "列主元Gauss消去法运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
+	cout << "gauss elim col pivoting running time" << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
 
 	max = abs(b[0] - 1);
 	for (int i = 1; i < N; i++) {
@@ -283,7 +283,7 @@ void exercise1_3(){
 	matrix_DLT(A);
 	back_subs(A, b);
 	end = clock();
-	cout << "改进的平方根法运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
+	cout << "modified cholesky decomp running time" << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
 
 	max = abs(b[0] - 1);
 	for (int i = 1; i < N; i++) {
@@ -310,14 +310,14 @@ void exercise_2() {
 	qr_decomposition(A, y, d);
 	back_subs(A, y);
 	end = clock();
-	cout << "a,b,c的值分别为" << y[2] <<" " << y[1] <<" "<< y[0] << endl;
+	cout << "a,b,c=" << y[2] <<"," << y[1] <<","<< y[0] << endl;
 
-	cout << "求解最小二乘运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
+	cout << "least square running time " << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
 	for (int i = 3; i < m; i++) {
 		r = r + y[i] * y[i];
 	}
 	r = sqrt(r);
-	cout << "残向量的2范数为" << r << endl << endl;
+	cout << "res vector in 2 norm" << r << endl << endl;
 
 }
 
@@ -365,7 +365,7 @@ void exercise_3() {
 	qr_decomposition(A, b, d);
 	back_subs(A, b);
 	end = clock();
-	cout << "x0到x11的值分别为" << endl;
+	cout << "x0,x1,...,x11=" << endl;
 	for (int i = 0; i < 12; i++) {
 		printf("%f\t\t", b[i]);
 		if ((i + 1) % 4 == 0) {
@@ -373,12 +373,12 @@ void exercise_3() {
 		}
 	}
 	cout << endl;
-	cout << "求解最小二乘运行时间为" << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
+	cout << "least square running time " << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
 	for (int i = 12; i < m; i++) {
 		r = r + b[i] * b[i];
 	}
 	r = sqrt(r);
-	cout << "残向量的2范数为" << r << endl << endl;
+	cout << "res vec in 2 norm" << r << endl << endl;
 
 }
 
