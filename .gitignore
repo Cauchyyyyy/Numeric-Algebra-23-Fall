@@ -33,3 +33,6 @@
 *.pdf
 .vs
 x64
+
+# cmake files
+/build
