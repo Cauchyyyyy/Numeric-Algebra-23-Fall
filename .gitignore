@@ -33,3 +33,4 @@
 *.pdf
 .vs
 x64
+/build
